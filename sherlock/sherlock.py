@@ -505,21 +505,6 @@ def main():
 
     args = parser.parse_args()
 
-    # Check for newer version of Sherlock. If it exists, let the user know about it
-    try:
-        r = requests.get("https://raw.githubusercontent.com/sherlock-project/sherlock/master/sherlock/sherlock.py")
-
-        remote_version = str(re.findall('__version__ = "(.*)"', r.text)[0])
-        local_version = __version__
-
-        if remote_version != local_version:
-            print("Update Available!\n" +
-                  f"You are running version {local_version}. Version {remote_version} is available at https://git.io/sherlock")
-
-    except Exception as error:
-        print(f"A problem occured while checking for an update: {error}")
-
-
     # Argument check
     # TODO regex check on args.proxy
     if args.tor and (args.proxy is not None):
@@ -635,8 +620,13 @@ def main():
 
             # download and save user avatars
             print('[-] Start downloading avatars')
-            get_avatars.downloadAvatars(user_links, username)
-            print('[-] End downloading avatars')
+            download_status = get_avatars.downloadAvatars(user_links, username)
+            if download_status == -1:
+                print('[-] Error downloading')
+            if download_status == 0:
+                print('[-] No download links found')
+            if download_status > 0:
+                print(f'[-] End downloading avatars. {download_status} avatars downloaded.')
 
         if args.csv:
             with open(username + ".csv", "w", newline='', encoding="utf-8") as csv_report:
