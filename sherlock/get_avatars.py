@@ -67,9 +67,6 @@ def findImageSrcFromSourcePage(page_source, using_grandparents=False):
 
 
 def getAvatarLink(user_data: dict):
-    # site_name = user_data.get('website_name')
-    # print(f'[-] Check Sherlock avatar on {site_name}')
-
     empty_result = {'website_name': user_data.get('website_name'), 'user_link': user_data.get('user_link'),
                     'avatar_link': None}
 
@@ -90,6 +87,7 @@ def getAvatarLink(user_data: dict):
 
 
 def downloadAvatars(user_data: dict, folder_name):
+    avatars_count = 0
     try:
         try:
             os.mkdir(folder_name)
@@ -98,6 +96,7 @@ def downloadAvatars(user_data: dict, folder_name):
         for user in user_data:
             if not user.get('avatar_link'):
                 continue
+
             try:
                 img_data = requests.get(user.get('avatar_link')).content
             except:
@@ -106,5 +105,12 @@ def downloadAvatars(user_data: dict, folder_name):
             file = open(f"{folder_name}/{user.get('website_name')}.jpg", 'wb+')
             file.write(img_data)
             file.close()
+
+            avatars_count += 1
+
+        if avatars_count == 0:
+            os.rmdir(folder_name)
+        return avatars_count
+
     except Exception as e:
-        return
+        return -1
