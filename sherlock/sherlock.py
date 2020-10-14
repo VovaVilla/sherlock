@@ -23,6 +23,9 @@ from result import QueryStatus
 from result import QueryResult
 from notify import QueryNotifyPrint
 from sites  import SitesInformation
+# villa
+from multiprocessing.dummy import Pool as ThreadPool
+import get_avatars
 
 module_name = "Sherlock: Find Usernames Across Social Networks"
 __version__ = "0.12.9"
@@ -609,14 +612,31 @@ def main():
         else:
             result_file = f"{username}.txt"
 
+        all_links = []
         with open(result_file, "w", encoding="utf-8") as file:
             exists_counter = 0
             for website_name in results:
                 dictionary = results[website_name]
                 if dictionary.get("status").status == QueryStatus.CLAIMED:
+                    # Villa code here
+                    all_links.append({'website_name': website_name, 'user_link': dictionary.get('url_user')})
+
                     exists_counter += 1
                     file.write(dictionary["url_user"] + "\n")
             file.write(f"Total Websites Username Detected On : {exists_counter}\n")
+
+            # get user avatars
+            print('[-] Start checking Sherlock avatars')
+            pool = ThreadPool(6)
+            user_links = pool.map(get_avatars.getAvatarLink, all_links)
+            pool.close()
+            pool.join()
+            print('[-] End checking Sherlock avatars')
+
+            # download and save user avatars
+            print('[-] Start downloading avatars')
+            get_avatars.downloadAvatars(user_links, username)
+            print('[-] End downloading avatars')
 
         if args.csv:
             with open(username + ".csv", "w", newline='', encoding="utf-8") as csv_report:
