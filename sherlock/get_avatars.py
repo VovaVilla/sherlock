@@ -72,6 +72,7 @@ def getAvatarLink(user_data: dict):
 
     exceptions_list = ['ebay', 'boingboing.net', 'askfm', 'gravatar', 'smule', 'wordpress', 'reddit', 'medium',
                        'tiktok', 'flickr', 'taringa', 'spotify']
+
     if user_data.get('website_name').lower() in exceptions_list:
         return empty_result
 
