@@ -26,6 +26,7 @@ from sites  import SitesInformation
 # villa
 from multiprocessing.dummy import Pool as ThreadPool
 import get_avatars
+import pathlib
 
 module_name = "Sherlock: Find Usernames Across Social Networks"
 __version__ = "0.12.9"
@@ -626,7 +627,8 @@ def main():
             if download_status == 0:
                 print('[-] No download links found')
             if download_status > 0:
-                print(f'[-] End downloading avatars. {download_status} avatars downloaded.')
+                print(f'[-] End downloading avatars. {download_status} avatars downloaded to the folder '
+                      f'\"{pathlib.Path(__file__).parent.absolute()}/{username}/\".')
 
         if args.csv:
             with open(username + ".csv", "w", newline='', encoding="utf-8") as csv_report:
