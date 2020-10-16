@@ -1,9 +1,10 @@
 <p align=center>
 
-  <img src=".images/sherlock_main.png"/>
+  <img src="./images/sherlock_main.png"/>
 
   <br>
   <span>Hunt down social media accounts by username across <a href="https://github.com/sherlock-project/sherlock/blob/master/sites.md">social networks</a></span>
+  <span>Automatic loading of avatars by VovaVilla</span>
   <br>
   <a target="_blank" href="https://www.python.org/downloads/" title="Python version"><img src="https://img.shields.io/badge/python-%3E=_3.6-green.svg"></a>
   <a target="_blank" href="LICENSE" title="License: MIT"><img src="https://img.shields.io/badge/License-MIT-blue.svg"></a>
@@ -26,7 +27,7 @@
 </a>
 </p>
 
-##Avatars example
+## Avatars example
 
 <p align="center">
 <img src="./images/avatars_example.PNG"/>
