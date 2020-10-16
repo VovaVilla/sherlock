@@ -1,17 +1,13 @@
 <p align=center>
 
-  <img src="https://user-images.githubusercontent.com/27065646/53551960-ae4dff80-3b3a-11e9-9075-cef786c69364.png"/>
+  <img src=".images/sherlock_main.png"/>
 
   <br>
   <span>Hunt down social media accounts by username across <a href="https://github.com/sherlock-project/sherlock/blob/master/sites.md">social networks</a></span>
   <br>
   <a target="_blank" href="https://www.python.org/downloads/" title="Python version"><img src="https://img.shields.io/badge/python-%3E=_3.6-green.svg"></a>
   <a target="_blank" href="LICENSE" title="License: MIT"><img src="https://img.shields.io/badge/License-MIT-blue.svg"></a>
-  <a target="_blank" href="https://github.com/sherlock-project/sherlock/actions" title="Test Status"><img src="https://github.com/sherlock-project/sherlock/workflows/Tests/badge.svg?branch=master"></a>
-  <a target="_blank" href="https://github.com/sherlock-project/sherlock/actions" title="Nightly Tests"><img src="https://github.com/sherlock-project/sherlock/workflows/Nightly/badge.svg?branch=master"></a>
-  <a target="_blank" href="https://twitter.com/intent/tweet?text=%F0%9F%94%8E%20Find%20usernames%20across%20social%20networks%20&url=https://github.com/sherlock-project/sherlock&hashtags=hacking,%20osint,%20bugbounty,%20reconnaissance" title="Share on Twitter"><img src="https://img.shields.io/twitter/url/http/shields.io.svg?style=social"></a>
   <a target="_blank" href="http://sherlock-project.github.io/"><img alt="Website" src="https://img.shields.io/website-up-down-green-red/http/sherlock-project.github.io/..svg"></a>
-  <a target="_blank" href="https://microbadger.com/images/theyahya/sherlock"><img alt="docker image" src="https://images.microbadger.com/badges/version/theyahya/sherlock.svg"></a>
 </p>
 
 <p align="center">
@@ -30,6 +26,12 @@
 </a>
 </p>
 
+##Avatars example
+
+<p align="center">
+<img src="./images/avatars_example.PNG"/>
+</p>
+
 
 ## Installation
 
@@ -43,9 +45,6 @@ $ cd sherlock
 # install the requirements
 $ python3 -m pip install -r requirements.txt
 ```
-
-
-[![Open in Cloud Shell](https://user-images.githubusercontent.com/27065646/92304704-8d146d80-ef80-11ea-8c29-0deaabb1c702.png)](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/sherlock-project/sherlock&tutorial=README.md) [![Run on Repl.it](https://user-images.githubusercontent.com/27065646/92304596-bf719b00-ef7f-11ea-987f-2c1f3c323088.png)](https://repl.it/github/sherlock-project/sherlock)
 
 ## Usage
 
@@ -109,8 +108,12 @@ To search for more than one user:
 ```
 python3 sherlock user1 user2 user3
 ```
-
 Accounts found will be stored in an individual text file with the corresponding username (e.g ```user123.txt```).
+
+## Avatars
+After searching for Sherlock, a folder with the user's name will be created (the full path will be displayed in the console), into which avatars from the found user's pages will be automatically loaded.
+
+Note: Not all avatars can be found and loaded automatically
 
 ## Anaconda (Windows) Notes
 
@@ -194,10 +197,6 @@ warnings in the tests instead of true errors.
 If some sites are failing due to connection problems (site is down, in maintenance, etc)
 you can exclude them from tests by creating a `tests/.excluded_sites` file with a
 list of sites to ignore (one site name per line).
-
-## Stargazers over time
-
-[![Stargazers over time](https://starcharts.herokuapp.com/TheYahya/sherlock.svg)](https://starcharts.herokuapp.com/TheYahya/sherlock)
 
 ## License
 
