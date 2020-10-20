@@ -604,14 +604,14 @@ def main():
             for website_name in results:
                 dictionary = results[website_name]
                 if dictionary.get("status").status == QueryStatus.CLAIMED:
-                    # Villa code here
+                    # Villa
                     all_links.append({'website_name': website_name, 'user_link': dictionary.get('url_user')})
 
                     exists_counter += 1
                     file.write(dictionary["url_user"] + "\n")
             file.write(f"Total Websites Username Detected On : {exists_counter}\n")
 
-            # get user avatars
+            # Villa get user avatars
             print('[-] Start checking Sherlock avatars')
             pool = ThreadPool(6)
             user_links = pool.map(get_avatars.getAvatarLink, all_links)
